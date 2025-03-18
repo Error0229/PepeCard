@@ -38,7 +38,10 @@ export default function Home() {
         const userAccount = await userSigner.getAddress();
 
         // Contract address would be provided in a real implementation
-        const contractAddress = "0x74C34f8916169606e183962f5317DeFc4A3D7F91";
+        const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
+        if (!contractAddress) {
+          throw new Error("Game contract address not configured");
+        }
         const gameContract = new ethers.Contract(
           contractAddress,
           contractABI,

@@ -47,7 +47,7 @@ export default function TokenPurchase({
       setLoading(true);
       const signer = await provider.getSigner();
       const tx = await signer.sendTransaction({
-        to: "0xb1EF27DD560763F3d66722ee79321458BcD32f4F", // Contract address
+        to: process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
         value: ethers.parseEther(ethAmount),
       });
       await tx.wait();
