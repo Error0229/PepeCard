@@ -113,7 +113,7 @@ export default function TokenPurchase({
           </TooltipContent>
         </Tooltip>
         <p className="text-xs text-muted-foreground text-center">
-          Rate: 1 ETH = 1 PC
+          Rate: 0.0001 ETH = 1 PC
         </p>
       </CardContent>
     </Card>

@@ -9,6 +9,7 @@ interface PlayerInfoProps {
     buyin: string;
     accumulation: string;
     flips: number;
+    nextReward: string; // Add this
   };
   gameActive: boolean;
 }
@@ -62,6 +63,15 @@ export default function PlayerInfo({
                 <div className="text-2xl font-bold text-primary">
                   {Number.parseFloat(gameState.accumulation).toLocaleString()}{" "}
                   PC
+                </div>
+              </div>
+
+              <div>
+                <div className="text-sm text-muted-foreground">
+                  Next Card Reward
+                </div>
+                <div className="text-lg font-semibold text-green-500">
+                  +{Number.parseFloat(gameState.nextReward).toLocaleString()} PC
                 </div>
               </div>
             </div>

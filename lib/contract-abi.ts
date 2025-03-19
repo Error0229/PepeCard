@@ -6,11 +6,16 @@ export const contractABI = [
   "function allowance(address owner, address spender) view returns (uint256)",
 
   // Game functions
-  "function StartGame(address from, uint256 credit)",
-  "function FlipCard(address from, uint256 index) returns (uint256)",
-  "function Leave(address from)",
+  "function StartGame(uint256 credit)",
+  "function FlipCard(uint256 index) returns (uint256)",
+  "function Leave()",
   "function redeem(uint256 tokenAmount)",
-  "function GameState(address from) view returns (bool[5][5], uint256, uint256, uint8)",
+  "function GameState() view returns (bool[5][5], uint256, uint256, uint8, uint256)",
+
+  // Owner functions
+  "function owner() view returns (address)",
+  "function TakeOut()",
+  "function FreeToken()",
 
   // Events
   "event GameStarted(address indexed player, uint256 buyin)",

@@ -22,6 +22,7 @@ interface GameControlsProps {
   updateGameState: () => Promise<void>;
   setLoading: (loading: boolean) => void;
   loading: boolean;
+  isGameOver?: boolean;
 }
 
 export default function GameControls({
@@ -32,6 +33,7 @@ export default function GameControls({
   updateGameState,
   setLoading,
   loading,
+  isGameOver = false,
 }: GameControlsProps) {
   const [buyinAmount, setBuyinAmount] = useState("100");
   const [redeemAmount, setRedeemAmount] = useState("");
@@ -43,18 +45,18 @@ export default function GameControls({
     try {
       setLoading(true);
       // First check allowance and approve if needed
-      const allowance = await contract.allowance(account, contract.target);
+      // const allowance = await contract.allowance(account, contract.target);
       const buyinAmountBN = ethers.parseUnits(buyinAmount, 18);
 
-      if (allowance < buyinAmountBN) {
-        const approveTx = await contract.approve(
-          contract.target,
-          buyinAmountBN
-        );
-        await approveTx.wait();
-      }
+      // if (allowance < buyinAmountBN) {
+      //   const approveTx = await contract.approve(
+      //     contract.target,
+      //     buyinAmountBN
+      //   );
+      //   await approveTx.wait();
+      // }
 
-      const tx = await contract.StartGame(account, buyinAmountBN);
+      const tx = await contract.StartGame(buyinAmountBN);
       await tx.wait();
       await updateGameState();
 
@@ -81,7 +83,7 @@ export default function GameControls({
 
     try {
       setLoading(true);
-      const tx = await contract.Leave(account);
+      const tx = await contract.Leave();
       await tx.wait();
       await updateGameState();
 
@@ -211,11 +213,15 @@ export default function GameControls({
               <span>
                 <Button
                   className="w-full"
-                  variant="outline"
+                  variant={isGameOver ? "destructive" : "outline"}
                   onClick={handleLeaveGame}
                   disabled={!canLeaveGame}
                 >
-                  {loading ? "Processing..." : "Leave Game & Collect Rewards"}
+                  {loading
+                    ? "Processing..."
+                    : isGameOver
+                    ? "Game Over - Leave & Lose Everything"
+                    : "Leave Game & Collect Rewards"}
                 </Button>
               </span>
             </TooltipTrigger>
@@ -223,6 +229,8 @@ export default function GameControls({
               <p>
                 {loading
                   ? "Transaction in progress"
+                  : isGameOver
+                  ? "You hit the ghost card! All rewards will be lost"
                   : "Leave the game and collect your rewards"}
               </p>
             </TooltipContent>
