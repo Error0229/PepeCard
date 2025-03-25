@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "PepeCard",
   description: "Demo of eth GAMBA",
   generator: "v0.dev",
+  icons: {
+    icon: "/pc.avif",
+  },
 };
 
 export default function RootLayout({
@@ -16,12 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
         </ThemeProvider>
       </body>
