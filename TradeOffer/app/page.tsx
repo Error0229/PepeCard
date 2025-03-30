@@ -210,10 +210,10 @@ export default function Home() {
       <div className="max-w-6xl mx-auto">
         <header className="mb-8 text-center">
           <h1 className="text-4xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
-            EFeed NFT Gacha
+            ⚠️Trade Offer⚠️
           </h1>
           <p className="text-gray-300 mb-6">
-            Mint NFTs and claim random ones from the pool
+            I receive: 1 NFT. You receive: 1 NFT.
           </p>
 
           <div className="flex justify-center mb-4">

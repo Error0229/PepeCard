@@ -7,8 +7,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Trade Offer",
-  description: "You Receive: 1 NFT. I Receive: 1 NFT.",
+  title: "⚠️Trade Offer⚠️",
+  description: "I receive: 1 NFT. You receive: 1 NFT.",
   generator: "v0.dev",
   icons: {
     icon: "/4x.avif",
