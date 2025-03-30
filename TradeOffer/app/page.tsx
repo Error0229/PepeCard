@@ -32,6 +32,7 @@ export default function Home() {
   const [credits, setCredits] = useState<number>(0);
   const [tokensInPool, setTokensInPool] = useState<number[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
+  const [ownedTokens, setOwnedTokens] = useState<number[]>([]);
   const [notification, setNotification] = useState<{
     type: "success" | "error";
     message: string;
@@ -87,6 +88,9 @@ export default function Home() {
       // Fetch metadata for tokens in pool
       await fetchNFTMetadata(contract, tokenNumbers);
 
+      // // Load owned NFTs
+      // await loadOwnedNFTs(contract, account);
+
       setLoading(false);
     } catch (error) {
       console.error("Error loading user data:", error);
@@ -94,6 +98,24 @@ export default function Home() {
       showNotification("error", "Failed to load user data");
     }
   };
+
+  // // Load owned NFTs
+  // const loadOwnedNFTs = async (contract: ethers.Contract, account: string) => {
+  //   try {
+  //     const balance = await contract.balanceOf(account);
+  //     const ownedTokens: number[] = [];
+
+  //     for (let i = 0; i < Number(balance); i++) {
+  //       const tokenId = await contract.tokenOfOwnerByIndex(account, i);
+  //       ownedTokens.push(Number(tokenId.toString()));
+  //     }
+
+  //     setOwnedTokens(ownedTokens);
+  //     await fetchNFTMetadata(contract, ownedTokens);
+  //   } catch (error) {
+  //     console.error("Error loading owned NFTs:", error);
+  //   }
+  // };
 
   // Fetch metadata for NFTs
   const fetchNFTMetadata = async (
@@ -257,6 +279,9 @@ export default function Home() {
               <TabsTrigger value="pool">
                 NFT Pool ({tokensInPool.length})
               </TabsTrigger>
+              {/* <TabsTrigger value="owned">
+                My NFTs ({ownedTokens.length})
+              </TabsTrigger> */}
             </TabsList>
 
             <TabsContent value="mint">
@@ -395,6 +420,41 @@ export default function Home() {
                 </div>
               </div>
             </TabsContent>
+
+            {/*
+            <TabsContent value="owned">
+              <div className="space-y-6">
+                <div className="bg-gray-800/50 border border-gray-700 rounded-lg p-4">
+                  <h3 className="text-xl font-bold mb-2">Your NFTs</h3>
+                  <p className="text-gray-400 mb-4">
+                    NFTs that you currently own.
+                  </p>
+                  {loading ? (
+                    <div className="flex justify-center items-center py-12">
+                      <Loader2 className="h-8 w-8 animate-spin text-purple-500" />
+                    </div>
+                  ) : ownedTokens.length === 0 ? (
+                    <div className="text-center py-12 text-gray-400">
+                      <p>
+                        You don't own any NFTs yet. Try claiming some from the
+                        pool!
+                      </p>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {ownedTokens.map((tokenId) => (
+                        <NFTCard
+                          key={tokenId}
+                          tokenId={tokenId}
+                          metadata={nftMetadata[tokenId]}
+                        />
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            </TabsContent>
+            */}
           </Tabs>
         ) : (
           <div className="text-center py-12 bg-gray-800/50 border border-gray-700 rounded-lg max-w-md mx-auto">
