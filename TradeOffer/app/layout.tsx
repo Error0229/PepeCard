@@ -7,9 +7,12 @@ import { ThemeProvider } from "@/components/theme-provider";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "EFeed NFT Gacha",
-  description: "Mint NFTs and claim random ones from the pool",
+  title: "Trade Offer",
+  description: "You Receive: 1 NFT. I Receive: 1 NFT.",
   generator: "v0.dev",
+  icons: {
+    icon: "/4x.avif",
+  },
 };
 
 export default function RootLayout({

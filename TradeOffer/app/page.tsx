@@ -21,7 +21,7 @@ import ConnectWallet from "@/components/connect-wallet";
 import { contractABI } from "@/lib/contract-abi";
 
 // Contract address - replace with your deployed contract address
-const CONTRACT_ADDRESS = "0x2a48d5cB90ED3423Db5EEa24f47cA40d4DAb6094";
+const CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
 
 export default function Home() {
   const [provider, setProvider] = useState<ethers.BrowserProvider | null>(null);
@@ -45,6 +45,9 @@ export default function Home() {
         const browserProvider = new ethers.BrowserProvider(window.ethereum);
         const signer = await browserProvider.getSigner();
         const account = await signer.getAddress();
+        if (!CONTRACT_ADDRESS) {
+          throw new Error("Contract address is not defined");
+        }
         const contract = new ethers.Contract(
           CONTRACT_ADDRESS,
           contractABI,
