@@ -1,12 +1,12 @@
-= Blockchain HW1
+#align(center, text(24pt)[*Blockchain HW1*])
 
-
+#text(10pt)[\* All the contracts in this assignment are deployed on the Sepolia testnet. You can view them on Sepolia Etherscan by clicking the contract address.]
 == Task 1:  Deploy ERC20 Token
 Contract Address:#link("https://sepolia.etherscan.io/address/0x8a899A996b233bFFc73cBDEf0BDB8817fcd6a4Fb")[ `0x8a899A996b233bFFc73cBDEf0BDB8817fcd6a4Fb`]
 #box(
   image("pc.png")
 )
-Demo website: `https://pepe-card.vercel.app/`
+Demo website: #link("https://pepe-card.vercel.app/")[`https://pepe-card.vercel.app/`]
 
 == Game Description
 PepeCard is a risk-reward card flipping game implemented as a smart contract. Here's how it works:
@@ -38,5 +38,55 @@ When a non-owner tries to call the `FreeToken()` function, the transaction will 
 #box(
   image("Failed_erc20.png")
 )
-
+#pagebreak()
 == Task 2: Deploy ERC721 Token
+Contract Address:#link("https://sepolia.etherscan.io/address/0xdb319C816aec7cb4F44bC8e825Fe00248457E837")[ `0xdb319C816aec7cb4F44bC8e825Fe00248457E837`]
+
+#grid(
+  columns: 2,
+  align: horizon,
+  gutter: 0.5em,
+  grid.cell(image("tf.png")),
+  grid.cell(image("tf1.png")),
+)
+Demo website: #link("https://trade-offer-ten.vercel.app/")[`https://trade-offer-ten.vercel.app/`]
+
+The Trade Offer contract implements a unique NFT trading system where users can mint and Gacha NFTs.
+
+=== Core Mechanics
+- Users can mint new NFTs by providing metadata URIs
+- Each minted NFT is held by the contract and adds to the pool
+- Minters receive 1 claim credit for each NFT they mint
+- Users can claim random NFTs from the pool using their credits (additional fee needed)
+
+=== Only Owner Functions
+- `withdraw()`: Allows the owner to withdraw all ETHs from the contract
+
+=== Known Issues
+- Since you getting a different randomness from the contract every time interacting with it, you may repeatedly try to claim an NFT until you get the one you want.
+#link("https://testnets.opensea.io/collection/tradeoffer")[#text(10pt)[ \* Note: You may check the NFTs on the OpenSea testnet by clicking this text.]]
+
+#pagebreak()
+
+== Task 3: Deploy ERC1155 Token 
+
+
+
+#pagebreak()
+
+== Task 4: Deploy ERC721A Token
+
+Contract Address:#link("https://sepolia.etherscan.io/address/0x6a3E113c919E03b3270359461DcacBaaf31C8469")[ `0x6a3E113c919E03b3270359461DcacBaaf31C8469`]
+ 
+No Demo website available.
+- The contract is a simple ERC721A implementation with maximum supply of 500 NFTs.
+- Only function implementation is `airdrop(to, quantity)` which allows the owner to mint NFTs to a specified address.
+
+#grid(
+  rows: 2,
+  align: horizon,
+  grid.cell(figure(image("721A.png"), caption: "The contract")),
+  grid.cell(figure(image("500tokens.png", height:40%), caption: link("https://sepolia.etherscan.io/tx/0x8155d80102ace5e3a130ccb272897d19841edb8db1ad21bf0ea0a10405262560")[500 NFTs minted in single transaction]))
+)
+
+You can check the batch minted NFTs on the OpenSea testnet by the following link: #link("https://testnets.opensea.io/ja/collection/shi-ma")[#text(10pt)[ https://testnets.opensea.io/ja/collection/shi-ma]]
