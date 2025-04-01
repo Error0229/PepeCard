@@ -10,6 +10,9 @@ export const metadata = {
   title: "開學後網路加退選系統(四機)",
   description:
     "A blockchain-based platform for fair and transparent course registration",
+  icons: {
+    icon: "/book.png",
+  },
   generator: "v0.dev",
 };
 
