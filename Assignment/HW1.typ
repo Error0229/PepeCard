@@ -1,5 +1,8 @@
+#set text(font: "New Computer Modern") 
 #align(center, text(24pt)[*Blockchain HW1*])
-
+#align(right, [資工四 110590004 林奕廷])
+#set heading(numbering: "1.a.")
+#set enum()
 #text(10pt)[\* All the contracts in this assignment are deployed on the Sepolia testnet. You can view them on Sepolia Etherscan by clicking the contract address.]
 == Task 1:  Deploy ERC20 Token
 Contract Address:#link("https://sepolia.etherscan.io/address/0x8a899A996b233bFFc73cBDEf0BDB8817fcd6a4Fb")[ `0x8a899A996b233bFFc73cBDEf0BDB8817fcd6a4Fb`]
@@ -69,6 +72,52 @@ The Trade Offer contract implements a unique NFT trading system where users can 
 #pagebreak()
 
 == Task 3: Deploy ERC1155 Token 
+Contract Address: #link("https://sepolia.etherscan.io/address/0xa6587d027f29fdab5ee987ee9712b257849309ce")[ `0xa6587d027f29fdab5ee987ee9712b257849309ce`]
+#image("1155.png")
+#grid(
+  columns: 2,
+  align: horizon,
+  gutter: 0.5em,
+  grid.cell(image("teacher view.png")),
+  grid.cell(image("crs.png")),
+)
+
+Demo website: #link("isms-nagios.vercel.app")[`https://isms-nagios.vercel.app/`]
+
+
+The *開學後網路加退選系統(四機)* implements a course bidding system with the following features:
+
+=== Core Mechanics
+- Students must register to receive 25 ETH initial credits
+- Teachers can create courses with specified capacity and metadata
+- Students bid on courses using their credits
+- Credits are locked during active bids
+- When bidding ends, top N bidders (based on capacity) win course slots
+- Losing bidders get their credits refunded
+
+=== Key Functions
++ *Registration*
+  - New students receive 25 ETH initial credits
+  - Each address can only register once
+
++ *Course Creation*
+  - Only addresses with TEACHER_ROLE can create courses
+  - Teachers specify capacity and course metadata
+  - Each course gets a unique courseId
+  - NFTs are minted to represent course slots
+
++ *Bidding Process*
+  - Students can bid multiple times on the same course
+  - Subsequent bids are added to their existing bid amount
+  - Credits are locked during active bids
+  - Must have sufficient credits to place bid
+
++ *Finalization*
+  - Only course teacher can finalize bidding
+  - System automatically selects top N highest bidders
+  - Winners receive course NFT as proof of enrollment
+  - Losing bidders get credits refunded
+  - Course status changes to "finalized"
 
 
 
