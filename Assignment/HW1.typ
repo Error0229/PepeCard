@@ -1,9 +1,9 @@
 #set text(font: "New Computer Modern") 
 #align(center, text(24pt)[*Blockchain HW1*])
 #align(right, [資工四 110590004 林奕廷])
-#set heading(numbering: "1.a.")
-#set enum()
 #text(10pt)[\* All the contracts in this assignment are deployed on the Sepolia testnet. You can view them on Sepolia Etherscan by clicking the contract address.]
+
+#text(10pt)[\* All the contracts and websites can be accessed from the PepeCard repository #link("https://github.com/Error0229/PepeCard")[https://github.com/Error0229/PepeCard]]
 == Task 1:  Deploy ERC20 Token
 Contract Address:#link("https://sepolia.etherscan.io/address/0x8a899A996b233bFFc73cBDEf0BDB8817fcd6a4Fb")[ `0x8a899A996b233bFFc73cBDEf0BDB8817fcd6a4Fb`]
 #box(
